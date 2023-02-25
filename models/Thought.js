@@ -1,13 +1,13 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
-const reactionSchema = require('./Reaction');
+const { Schema, model } = require('mongoose');
+
+const {reactionSchema} = require('./Reaction');
 
 const thoughtSchema = new Schema({
   thoughtText: {
     type: String,
     required: true,
-    minLength: 1,
-    maxLength: 280
+    minlength: 1,
+    maxlength: 280
   },
   createdAt: {
     type: Date,
@@ -21,6 +21,5 @@ const thoughtSchema = new Schema({
   reactions: [reactionSchema]
 });
 
-const Thought = mongoose.model('Thought', thoughtSchema);
-
+const Thought = model('Thought', thoughtSchema);
 module.exports = Thought;

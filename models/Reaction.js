@@ -1,16 +1,17 @@
+const { Schema, model } = require('mongoose'); //Is this redundent or can be written shorthand?
 const mongoose = require('mongoose');
-const { Schema, model } = require('mongoose'); //Is this redunt or can be written shorthand?
+
 
 const reactionSchema = new Schema({
-  reactionId: {
-    type: Schema.Types.ObjectId,
-    default: () => new Types.ObjectId()
-  },
+  // reactionId: {
+  //   type: Schema.Types.ObjectId,
+  //   default: mongoose.Types.ObjectId
+  // },
   reactionBody: {
     type: String,
     required: true,
-    minLength: 1,
-    maxLength: 280
+    minlength: 1,
+    maxlength: 280
   },
   username: {
     type: String,
@@ -23,6 +24,8 @@ const reactionSchema = new Schema({
   }
 });
 
-const Reaction = mongoose.model("Reaction", reactionSchema);
+// const Reaction = mongoose.model("Reaction", reactionSchema); not sure why following this and exporting Reaction 
+// instaed of 
 
-module.exports = Reaction;
+const Reaction = model('Reaction', reactionSchema);
+module.exports = { reactionSchema, Reaction };
